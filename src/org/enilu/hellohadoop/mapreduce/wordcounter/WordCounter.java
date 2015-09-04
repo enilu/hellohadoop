@@ -19,7 +19,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 /**
- * descript<br>
+ * 单词统计<br>
+ * 执行命令bin/hadoop jar hadoop-test-1.2.1.jar  org.enilu.hellohadoop.mapreduce.wordcounter.WordCounter profile output.txt
  * </p>
  * Copyright by easecredit.com<br>
  * 作者: zhangtao <br>

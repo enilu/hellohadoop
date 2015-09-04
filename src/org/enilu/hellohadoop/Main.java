@@ -6,7 +6,15 @@ import org.enilu.hellohadoop.hdfs.HDFS;
 import org.enilu.hellohadoop.hdfs.Listfiles;
 import org.enilu.hellohadoop.hdfs.Mkdir;
 import org.enilu.hellohadoop.hdfs.Rm;
-
+/**
+ * 
+ * hdfs测试住类<br>
+ * 执行命令bin/hadoop jar hadoop-test-1.2.1.jar  org.enilu.hellohadoop.Main list
+ * </p>
+ * Copyright by easecredit.com<br>
+ * 作者: zhangtao <br>
+ * 创建日期: 2015年9月4日<br>
+ */
 public class Main {
 
 	public static void main(String[] args) throws Exception {
