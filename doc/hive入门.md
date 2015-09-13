@@ -15,12 +15,13 @@
 
 - 配置环境变量
  <pre>
-	vi /etc/profile
-	增加如下内容：
+    vi /etc/profile
+	增加如下内容：   
 	export HIVE_HOME=/opt/hive-1.0.1
 	export PATH=$HIVE_HOME/bin:$PATH  
 	保存并退出;
 	source /etc/profile
+    
 </pre>
 
 - hive-config.sh
@@ -64,10 +65,45 @@
 - 其他配置
 	
 - 针对hive-site.xml，我使用其默认配置的工作目录，总是会报目录通配符错误。为了方便测试，直接将所有的${system:java.io.tmpdir}/${system:user.name} 替换为/tmp/hive_test；本例子中并没有配置与hadoop相关的配置，因为我直接在本地运行的hadoop，所以，默认找本地的配置
-- 输入hive，也可一输入hive -hiveconf hive.root.logger=DEBUG,console 来进行测试，可以方便的看到很多打印信息。
-- 输入 create table test(key string); 创建一个表。
-- 输入show tables 查看到刚才创建的test表。
+- 输入```hive```，也可一输入```hive -hiveconf hive.root.logger=DEBUG,console``` 来进行测试，可以方便的看到很多打印信息。
+- 创建表：
+	```
+	CREATE EXTERNAL TABLE MYTEST(num INT, name STRING)
+    COMMENT 'this is a test'
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+    STORED AS TEXTFILE
+    LOCATION '/data/test';
+	```
+- 导入数据到表中
+	
+	导入数据可以使用hadoop，例如：```hadoop fs -put /root/entname.txt /data/test```
+- entname.txt 内容为：
+	```
+	1,贵溪市城市建设投资开发公司
+	2,武汉湛卢压铸有限公司
+	3,柳州钢铁股份有限公司
+	4,天津泰达投资控股有限公司
+	5,吉尔吉斯斯坦农业投资银行
+	6,北京桑德环境工程有限公司
+	7,保亭海航旅游开发有限公司
+	8,中信信通国际物流有限公司
+	9,上饶市城东投资发展有限公司
+	10,三一重机有限公司
+	
+	```
+- 查询数据
 
+	在hive中执行：```select * from mytest where num>3 and num <8; ```
+	```java
+	hive> select * from mytest where num>3 and num <8;
+	OK
+	4	天津泰达投资控股有限公司
+	5	吉尔吉斯斯坦农业投资银行
+	6	北京桑德环境工程有限公司
+	7	保亭海航旅游开发有限公司
+	Time taken: 0.106 seconds, Fetched: 4 row(s)
+	hive> 
+	```
 
 ## 参考资料 ##
 
